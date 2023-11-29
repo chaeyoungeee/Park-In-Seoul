@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".fragments.Dustragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/airMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/prtendardb"
+            android:text="호흡기가 예민하신 분들은 몸상태 유의하며 활동해주세요."
+            android:textColor="@color/white"
+            android:layout_marginBottom="20dp"
+            android:textSize="23dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/black_button"
+                android:fontFamily="@font/prtendardb"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="🧐 통합대기환경지수"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:id="@+id/airIdx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:fontFamily="@font/prtendardb"
+                    android:text="보통"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/black_button"
+                    android:fontFamily="@font/prtendardb"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:text="😷 미세먼지"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/pm10Idx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:fontFamily="@font/prtendardb"
+                        android:text="좋음"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+
+
+                    <TextView
+                        android:id="@+id/pm10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:fontFamily="@font/prtendardb"
+                        android:text="(1㎍/㎡)"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/black_button"
+                    android:fontFamily="@font/prtendardb"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:text="😷 초미세먼지"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/pm25Idx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:fontFamily="@font/prtendardb"
+                        android:text="좋음"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/pm25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:fontFamily="@font/prtendardb"
+                        android:text="(1㎍/㎡)"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
