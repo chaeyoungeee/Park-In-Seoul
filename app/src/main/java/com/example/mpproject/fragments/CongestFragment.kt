@@ -42,11 +42,15 @@ class CongestFragment : Fragment() {
         _binding = FragmentCongestBinding.inflate(inflater, container, false)
 
         val congestMsg = arguments?.getString("congestMsg")
-        if (congestMsg != null) {
-            binding.congestMsg1.text = "📌 " + congestMsg.split(".")[0].toString() + "."
-        }
-        if (congestMsg != null) {
-            binding.congestMsg2.text = "📌 " +  congestMsg.split(".")[1].toString() + "."
+        if (congestMsg != "") {
+            if (congestMsg != null) {
+                binding.congestMsg1.text = "📌 " + congestMsg.split(".")[0].toString() + "."
+                binding.congestMsg2.text = "📌 " +  congestMsg.split(".")[1].toString() + "."
+
+            }
+        } else {
+            binding.congestMsg1.visibility = View.GONE
+            binding.congestMsg2.visibility = View.GONE
         }
 
         val fcstPopulation = arguments?.getSerializable("fcstPopulation") as Data?

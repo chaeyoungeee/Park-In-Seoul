@@ -51,7 +51,7 @@ suspend fun parseParkDetailData(responseBody: ResponseBody): Map<Any, Any> {
                     // 인구 혼잡 정보
                     "AREA_CONGEST_MSG" -> {
                         parser.next()
-                        congestMsg = parser.text
+                        congestMsg = parser.text ?: ""
                     }
 
                     "FCST_PPLTN" -> {
@@ -69,19 +69,19 @@ suspend fun parseParkDetailData(responseBody: ResponseBody): Map<Any, Any> {
                                     when (parser.name) {
                                         "FCST_TIME" -> {
                                             parser.next()
-                                            currentForecast.time = parser.text
+                                            currentForecast.time = parser.text ?: ""
                                         }
                                         "FCST_CONGEST_LVL" -> {
                                             parser.next()
-                                            currentForecast.congestionLevel = parser.text
+                                            currentForecast.congestionLevel = parser.text ?: ""
                                         }
                                         "FCST_PPLTN_MIN" -> {
                                             parser.next()
-                                            currentForecast.populationMin = parser.text
+                                            currentForecast.populationMin = parser.text ?: ""
                                         }
                                         "FCST_PPLTN_MAX" -> {
                                             parser.next()
-                                            currentForecast.populationMax = parser.text
+                                            currentForecast.populationMax = parser.text ?: ""
                                         }
                                     }
                                 }
@@ -97,55 +97,55 @@ suspend fun parseParkDetailData(responseBody: ResponseBody): Map<Any, Any> {
                     // 날씨 정보
                     "TEMP" -> {
                         parser.next()
-                        temp = parser.text
+                        temp = parser.text ?: ""
                     }
                     "PCP_MSG" -> {
                         parser.next()
-                        precptMsg = parser.text
+                        precptMsg = parser.text ?: ""
                     }
                     "MAX_TEMP" -> {
                         parser.next()
-                        maxTemp = parser.text
+                        maxTemp = parser.text ?: ""
                     }
                     "MIN_TEMP" -> {
                         parser.next()
-                        minTemp = parser.text
+                        minTemp = parser.text ?: ""
                     }
                     "SENSIBLE_TEMP" -> {
                         parser.next()
-                        sensibleTemp = parser.text
+                        sensibleTemp = parser.text ?: ""
                     }
                     "SUNRISE" -> {
                         parser.next()
-                        sunrize = parser.text
+                        sunrize = parser.text ?: ""
                     }
                     "SUNSET" -> {
                         parser.next()
-                        sunset = parser.text
+                        sunset = parser.text ?: ""
                     }
                     "PM25_INDEX" -> {
                         parser.next()
-                        pm25Idx = parser.text
+                        pm25Idx = parser.text ?: ""
                     }
                     "PM25" -> {
                         parser.next()
-                        pm25 = parser.text
+                        pm25 = parser.text ?: ""
                     }
                     "PM10_INDEX" -> {
                         parser.next()
-                        pm10Idx = parser.text
+                        pm10Idx = parser.text ?: ""
                     }
                     "PM10" -> {
                         parser.next()
-                        pm10 = parser.text
+                        pm10 = parser.text ?: ""
                     }
                     "AIR_IDX" -> {
                         parser.next()
-                        airIdx = parser.text
+                        airIdx = parser.text ?: ""
                     }
                     "AIR_MSG" -> {
                         parser.next()
-                        airMsg = parser.text
+                        airMsg = parser.text ?: ""
                     }
 
 
@@ -167,27 +167,27 @@ suspend fun parseParkDetailData(responseBody: ResponseBody): Map<Any, Any> {
                                     when (parser.name) {
                                         "FCST_DT" -> {
                                             parser.next()
-                                            currentForecast2.DT = parser.text
+                                            currentForecast2.DT = parser.text ?: ""
                                         }
                                         "TEMP" -> {
                                             parser.next()
-                                            currentForecast2.temp = parser.text
+                                            currentForecast2.temp = parser.text ?: ""
                                         }
                                         "PRECIPITATION" -> {
                                             parser.next()
-                                            currentForecast2.preciptaiton = parser.text
+                                            currentForecast2.preciptaiton = parser.text ?: ""
                                         }
                                         "PRECPT_TYPE" -> {
                                             parser.next()
-                                            currentForecast2.preceptType = parser.text
+                                            currentForecast2.preceptType = parser.text ?: ""
                                         }
                                         "RAIN_CHANCE" -> {
                                             parser.next()
-                                            currentForecast2.rainChance = parser.text
+                                            currentForecast2.rainChance = parser.text ?: ""
                                         }
                                         "SKY_STTS" -> {
                                             parser.next()
-                                            currentForecast2.skyStatus = parser.text
+                                            currentForecast2.skyStatus = parser.text ?: ""
                                         }
                                     }
                                 }
@@ -211,15 +211,15 @@ suspend fun parseParkDetailData(responseBody: ResponseBody): Map<Any, Any> {
                                     when (parser.name) {
                                         "EVENT_NM" -> {
                                             parser.next()
-                                            currentEvent.name = parser.text
+                                            currentEvent.name = parser.text ?: ""
                                         }
                                         "EVENT_PERIOD" -> {
                                             parser.next()
-                                            currentEvent.period = parser.text
+                                            currentEvent.period = parser.text ?: ""
                                         }
                                         "EVENT_PLACE" -> {
                                             parser.next()
-                                            currentEvent.place = parser.text
+                                            currentEvent.place = parser.text ?: ""
                                         }
                                     }
                                 }
