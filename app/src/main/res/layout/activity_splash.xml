@@ -9,12 +9,18 @@
     android:orientation="vertical"
     tools:context=".SplashActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="800dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/park" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/prtendardsb"
-        android:text="🌳 파크 인 서울"
+        android:text="파크 인 서울"
         android:textColor="@color/white"
         android:textSize="40dp" />
 
@@ -25,5 +31,5 @@
         android:fontFamily="@font/prtendardm"
         android:text="Park in Seoul"
         android:textColor="@color/white"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 </LinearLayout>

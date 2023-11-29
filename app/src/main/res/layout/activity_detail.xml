@@ -8,13 +8,27 @@
     android:orientation="vertical"
     tools:context=".DetailActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/parkImg"
-        android:scaleType = "centerCrop"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/poi085" />
+        <Button
+            android:id="@+id/backBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/parkImg" />
+
+        <ImageView
+            android:id="@+id/parkImg"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/poi085" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_margin="20dp"
