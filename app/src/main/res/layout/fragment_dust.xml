@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:fontFamily="@font/prtendardb"
+            android:fontFamily="@font/prtendardsb"
             android:text="호흡기가 예민하신 분들은 몸상태 유의하며 활동해주세요."
             android:textColor="@color/white"
             android:layout_marginBottom="20dp"
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/black_button"
-                android:fontFamily="@font/prtendardb"
+                android:fontFamily="@font/prtendardsb"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="10dp"
                 android:text="🧐 통합대기환경지수"
@@ -45,8 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-
-                    android:fontFamily="@font/prtendardb"
+                    android:fontFamily="@font/prtendardsb"
                     android:text="보통"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
@@ -67,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/black_button"
-                    android:fontFamily="@font/prtendardb"
+                    android:fontFamily="@font/prtendardsb"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="10dp"
                     android:text="😷 미세먼지"
@@ -86,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
 
-                        android:fontFamily="@font/prtendardb"
+                        android:fontFamily="@font/prtendardsb"
                         android:text="좋음"
                         android:textColor="@color/white"
                         android:textSize="18dp" />
@@ -98,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
 
-                        android:fontFamily="@font/prtendardb"
+                        android:fontFamily="@font/prtendardsb"
                         android:text="(1㎍/㎡)"
                         android:textColor="@color/white"
                         android:textSize="18dp" />
@@ -115,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/black_button"
-                    android:fontFamily="@font/prtendardb"
+                    android:fontFamily="@font/prtendardsb"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="10dp"
                     android:text="😷 초미세먼지"
@@ -134,7 +133,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
 
-                        android:fontFamily="@font/prtendardb"
+                        android:fontFamily="@font/prtendardsb"
                         android:text="좋음"
                         android:textColor="@color/white"
                         android:textSize="18dp" />
@@ -145,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
 
-                        android:fontFamily="@font/prtendardb"
+                        android:fontFamily="@font/prtendardsb"
                         android:text="(1㎍/㎡)"
                         android:textColor="@color/white"
                         android:textSize="18dp" />

@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
 
             android:layout_marginBottom="7dp"
-            android:fontFamily="@font/prtendardb"
+            android:fontFamily="@font/prtendardsb"
             android:text="실시간 인구 정보 및 인구 전망"
             android:textColor="@color/white"
             android:textSize="23dp" />
@@ -37,7 +37,7 @@
             android:id="@+id/congestMsg1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/prtendardb"
+            android:fontFamily="@font/prtendardsb"
             android:text="📌 사람이 몰려있을 가능성이 적어요."
             android:textColor="@color/white"
             android:textSize="18dp"
@@ -46,7 +46,7 @@
             android:id="@+id/congestMsg2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/prtendardb"
+            android:fontFamily="@font/prtendardsb"
             android:text="📌 도보 이동이 쉬워요."
             android:textColor="@color/white"
             android:textSize="18dp" />

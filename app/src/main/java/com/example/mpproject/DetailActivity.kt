@@ -59,11 +59,12 @@ class DetailActivity : AppCompatActivity() {
                     val responseBody: ResponseBody? = response.body()
                     if (responseBody != null) {
                         val data = parseParkDetailData(responseBody)
-                        Log.d("API", "결과: ${data}")
+                        Log.d("event api", "결과: ${data}")
 
                         lifecycleScope.launch(Dispatchers.Main) {
-                            binding.sunrize.text = data["sunrize"].toString()
-                            binding.sunset.text = data["sunset"].toString()
+                            binding.sunrize.text = data["sunrize"]?.toString()
+                            binding.sunset.text = data["sunset"]?.toString()
+
 
                             val congestBundle = Bundle().apply {
                                 putSerializable("fcstPopulation", Data(data["fcstPopulation"]))
@@ -83,6 +84,8 @@ class DetailActivity : AppCompatActivity() {
                             }
 
                             val eventBundle = Bundle().apply {
+
+                                putSerializable("event", Data(data["event"]))
                             }
 
                             // Adapter에 각 Fragment에 전달할 Bundle 전달
@@ -104,7 +107,7 @@ class DetailActivity : AppCompatActivity() {
                     }
                 }
             } catch (e: Exception) {
-                Log.e("API", e.toString())
+                Log.e("event api", e.toString())
 
             } finally {
 

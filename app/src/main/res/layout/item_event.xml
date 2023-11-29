@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/black_box"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="18dp"
+    android:layout_marginBottom="15dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/prtendardsb"
+            android:text="2023 아트서울 특별전 [조각의 시간:울림]"
+            android:textColor="@color/white"
+            android:layout_marginBottom="20dp"
+            android:textSize="23dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/black_button"
+            android:fontFamily="@font/prtendardsb"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:text="🗓️ 기간"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/period"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/prtendardsb"
+            android:text="2023-11-28~2024-02-29"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/black_button"
+            android:fontFamily="@font/prtendardsb"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:text="🏢 장소"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+        <TextView
+            android:id="@+id/place"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/prtendardsb"
+            android:text="세종문화회관 내.외부 공간"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+</LinearLayout>

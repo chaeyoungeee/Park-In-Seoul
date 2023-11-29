@@ -1,12 +1,20 @@
-import android.os.Parcel
-import android.os.Parcelable
 import android.util.Xml
 import com.example.mpproject.data.FCST_PPLTN
+import com.example.mpproject.models.EventItem
 import okhttp3.ResponseBody
 import org.xmlpull.v1.XmlPullParser
-import java.io.StringReader
 
 suspend fun parseParkDetailData(responseBody: ResponseBody): Map<Any, Any> {
+    data class FCST_24(
+        var DT:String,
+        var temp: String,
+        var preciptaiton: String,
+        var preceptType: String,
+        var rainChance: String,
+        var skyStatus: String,
+    )
+
+
 //    val xml = responseBody.string()
 
     val parser = Xml.newPullParser()
@@ -32,29 +40,9 @@ suspend fun parseParkDetailData(responseBody: ResponseBody): Map<Any, Any> {
     var airIdx = ""
 
 
-
-
     val fcstPopulation = mutableListOf<FCST_PPLTN>()
-
-
-    data class FCST_24(
-        var DT:String,
-        var temp: String,
-        var preciptaiton: String,
-        var preceptType: String,
-        var rainChance: String,
-        var skyStatus: String,
-    )
-
     val fcstWeather = mutableListOf<FCST_24>()
-
-    data class EVENT_STTS(
-        var name: String,
-        var period: String,
-        var place: String
-    )
-    val event = mutableListOf<EVENT_STTS>()
-
+    val event = mutableListOf<EventItem>()
 
     while (eventType != XmlPullParser.END_DOCUMENT) {
         when (eventType) {
@@ -211,7 +199,7 @@ suspend fun parseParkDetailData(responseBody: ResponseBody): Map<Any, Any> {
                     }
 
                     "EVENT_STTS" -> {
-                        var currentEvent = EVENT_STTS(
+                        var currentEvent = EventItem(
                             name = "",
                             period = "",
                             place = ""

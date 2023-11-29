@@ -54,9 +54,9 @@ class MainActivity : AppCompatActivity() {
                                     data[6]
                                 )
                             )
-                            Log.d("API", "결과: $parkList")
+//                            Log.d("API", "결과: $parkList")
                             launch(Dispatchers.Main) {
-                                binding.rv.adapter?.notifyDataSetChanged()
+                                binding.recyclerView.adapter?.notifyDataSetChanged()
                             }
                         }
                     }
@@ -65,8 +65,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        binding.rv.layoutManager = GridLayoutManager(this, 2)
-        binding.rv.adapter = ParkAdapter(parkList)
+        binding.recyclerView.layoutManager = GridLayoutManager(this, 2)
+        binding.recyclerView.adapter = ParkAdapter(parkList)
 
         binding.sortdBtn.setOnClickListener {
             isSortdBtnClick = !isSortdBtnClick
@@ -89,12 +89,12 @@ class MainActivity : AppCompatActivity() {
                         else -> 5
                     }
                 }
-                binding.rv.adapter = ParkAdapter(sortedParkList)
+                binding.recyclerView.adapter = ParkAdapter(sortedParkList)
             }
             else {
                 binding.sortdBtn.setBackgroundResource(R.drawable.black_button)
                 binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.white))
-                binding.rv.adapter = ParkAdapter(parkList)
+                binding.recyclerView.adapter = ParkAdapter(parkList)
             }
 
         }
@@ -120,12 +120,12 @@ class MainActivity : AppCompatActivity() {
                         else -> 5
                     }
                 }
-                binding.rv.adapter = ParkAdapter(sortedParkList)
+                binding.recyclerView.adapter = ParkAdapter(sortedParkList)
             }
             else {
                 binding.sortaBtn.setBackgroundResource(R.drawable.black_button)
                 binding.sortaBtn.setTextColor(ContextCompat.getColor(this, R.color.white))
-                binding.rv.adapter = ParkAdapter(parkList)
+                binding.recyclerView.adapter = ParkAdapter(parkList)
             }
 
         }
