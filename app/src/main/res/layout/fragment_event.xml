@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/prtendardsb"
-                android:text="진행 중인 행사가 없습니다."
+                android:text="진행 중인 행사가 없어요."
                 android:textColor="@color/black"
                 android:layout_marginBottom="20dp"
                 android:textSize="18dp" />
