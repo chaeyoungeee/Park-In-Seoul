@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".fragments.CongestFragment">
+    <ScrollView
+        android:id="@+id/bio_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/airMsg2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@font/prtendardb"
+            android:text="실시간 인구 정보 및 인구 전망"
+            android:textColor="@color/white"
+            android:textSize="23dp" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:id="@+id/congestMsg1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/prtendardb"
+            android:text="📌 사람이 몰려있을 가능성이 적어요."
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_marginBottom="5dp"/>
+        <TextView
+            android:id="@+id/congestMsg2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/prtendardb"
+            android:text="📌 도보 이동이 쉬워요."
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+    </ScrollView>
+</FrameLayout>
