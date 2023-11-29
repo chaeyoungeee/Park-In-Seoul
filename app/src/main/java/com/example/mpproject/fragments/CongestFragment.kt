@@ -3,7 +3,6 @@ package com.example.mpproject.fragments
 import android.R
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +29,6 @@ class CongestFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //        Log.d("c", fcstPopulation.toString())
     }
 
     override fun onCreateView(
@@ -145,7 +143,6 @@ class CongestFragment : Fragment() {
                 if (time != null) {
                     val t1 = time.split(" ")[1]
                     val t2 = t1.split(":")[0]
-                    Log.d("a", t2)
                     labels.add(t2)
                 }
             }

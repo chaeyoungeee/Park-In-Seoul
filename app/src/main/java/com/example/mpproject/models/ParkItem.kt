@@ -2,10 +2,10 @@ package com.example.mpproject.models
 
 data class ParkItem(
     val name: String,
-    val congestLevel: String,
-    val temp: String,
-    val minTemp: String,
-    val maxTemp: String,
-    val code: String,
-    val skyStatus:String,
+    var congestLevel: String,
+    var temp: String,
+    var minTemp: String,
+    var maxTemp: String,
+    var code: String,
+    var skyStatus:String,
 )

@@ -61,7 +61,7 @@ class DetailActivity : AppCompatActivity() {
                     val responseBody: ResponseBody? = response.body()
                     if (responseBody != null) {
                         val data = parseParkDetailData(responseBody)
-                        Log.d("event api", "결과: ${data}")
+//                        Log.d("event api", "결과: ${data}")
 
                         lifecycleScope.launch(Dispatchers.Main) {
                             binding.sunrize.text = data["sunrize"]?.toString()
@@ -69,7 +69,10 @@ class DetailActivity : AppCompatActivity() {
 
 
                             val congestBundle = Bundle().apply {
-                                putSerializable("fcstPopulation", DataPopulation(data["fcstPopulation"]))
+                                putSerializable(
+                                    "fcstPopulation",
+                                    DataPopulation(data["fcstPopulation"])
+                                )
                                 putString("congestMsg", data["congestMsg"].toString())
                             }
 
@@ -96,7 +99,13 @@ class DetailActivity : AppCompatActivity() {
                             }
 
                             // Adapter에 각 Fragment에 전달할 Bundle 전달
-                            val adapter = ViewPagerAdapter(this@DetailActivity, congestBundle, weatherBundle, dustBundle, eventBundle)
+                            val adapter = ViewPagerAdapter(
+                                this@DetailActivity,
+                                congestBundle,
+                                weatherBundle,
+                                dustBundle,
+                                eventBundle
+                            )
                             viewPager.adapter = adapter
 
 
@@ -150,7 +159,13 @@ class DetailActivity : AppCompatActivity() {
         }
 
         // Adapter에 각 Fragment에 전달할 Bundle 전달
-        val adapter = ViewPagerAdapter(this@DetailActivity, congestBundle, weatherBundle, dustBundle, eventBundle)
+        val adapter = ViewPagerAdapter(
+            this@DetailActivity,
+            congestBundle,
+            weatherBundle,
+            dustBundle,
+            eventBundle
+        )
         viewPager.adapter = adapter
 
 
@@ -160,7 +175,8 @@ class DetailActivity : AppCompatActivity() {
             tab.text = tabLayoutTextArray[position]
         }.attach()
 
-
-
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
     }
 }

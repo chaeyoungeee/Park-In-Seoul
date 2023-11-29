@@ -46,7 +46,6 @@ class WeatherFragment : Fragment() {
 //        )
 
 //        fcstWeatherList?.add(0, newWeatherItem)
-        Log.d("f", fcstWeatherList.toString())
 
         binding.currentTemp.text = arguments?.getString("temp") + "℃/"
         binding.minTemp.text = arguments?.getString("minTemp") + "℃/"

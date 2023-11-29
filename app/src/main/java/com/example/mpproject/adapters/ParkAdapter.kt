@@ -1,10 +1,12 @@
 package com.example.mpproject.adapters
 
+import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mpproject.DetailActivity
 import com.example.mpproject.R
@@ -12,7 +14,8 @@ import com.example.mpproject.databinding.ItemParkBinding
 import com.example.mpproject.models.ParkItem
 import java.time.LocalTime
 
-class ParkAdapter(val parkList: List<ParkItem>) : RecyclerView.Adapter<ParkAdapter.Holder>()  {
+class ParkAdapter(val parkList: MutableList<ParkItem>) : RecyclerView.Adapter<ParkAdapter.Holder>()  {
+    private val requestCode = "1000"
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParkAdapter.Holder {
         val binding = ItemParkBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return Holder(binding)
@@ -32,7 +35,6 @@ class ParkAdapter(val parkList: List<ParkItem>) : RecyclerView.Adapter<ParkAdapt
         val currentTime = LocalTime.now()
         val hour = currentTime.hour
 
-        Log.d("h", hour.toString())
 
         when (parkList[position].skyStatus) {
             "맑음" -> {

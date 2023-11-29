@@ -1,12 +1,15 @@
 package com.example.mpproject
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mpproject.adapters.ParkAdapter
 import com.example.mpproject.data.Park
+import com.example.mpproject.data.Park.newParkList
 import com.example.mpproject.databinding.ActivityMainBinding
 import com.example.mpproject.parse.parseParkData
 import kotlinx.coroutines.Dispatchers
@@ -28,43 +31,42 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://openapi.seoul.go.kr:8088/")
-            .build()
-
-        val service = retrofit.create(ParkApiService::class.java)
-
-        Park.parks.subList(8, 29).forEach { park ->
-            GlobalScope.launch(Dispatchers.IO) {
-                try {
-                    val response: Response<ResponseBody> = service.getParkData(park)
-
-                    if (response.isSuccessful) {
-                        val responseBody: ResponseBody? = response.body()
-                        if (responseBody != null) {
-                            val data = parseParkData(responseBody)
-                            parkList.add(
-                                ParkItem(
-                                    data[0],
-                                    data[1],
-                                    data[2],
-                                    data[3],
-                                    data[4],
-                                    data[5],
-                                    data[6]
-                                )
-                            )
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl("http://openapi.seoul.go.kr:8088/")
+//            .build()
+//
+//        val service = retrofit.create(ParkApiService::class.java)
+//        Park.parks.subList(8, 29).forEach { park ->
+//            GlobalScope.launch(Dispatchers.IO) {
+//                try {
+//                    val response: Response<ResponseBody> = service.getParkData(park)
+//
+//                    if (response.isSuccessful) {
+//                        val responseBody: ResponseBody? = response.body()
+//                        if (responseBody != null) {
+//                            val data = parseParkData(responseBody)
+//                            parkList.add(
+//                                ParkItem(
+//                                    data[0],
+//                                    data[1],
+//                                    data[2],
+//                                    data[3],
+//                                    data[4],
+//                                    data[5],
+//                                    data[6]
+//                                )
+//                            )
 //                            Log.d("API", "결과: $parkList")
-                            launch(Dispatchers.Main) {
-                                binding.recyclerView.adapter?.notifyDataSetChanged()
-                            }
-                        }
-                    }
-                } catch (e: Exception) {
-                    Log.e("API", e.toString())
-                }
-            }
-        }
+//                            launch(Dispatchers.Main) {
+//                                binding.recyclerView.adapter?.notifyDataSetChanged()
+//                            }
+//                        }
+//                    }
+//                } catch (e: Exception) {
+//                    Log.e("API", e.toString())
+//                }
+//            }
+//        }
         binding.recyclerView.layoutManager = GridLayoutManager(this, 2)
         binding.recyclerView.adapter = ParkAdapter(parkList)
 
@@ -89,9 +91,8 @@ class MainActivity : AppCompatActivity() {
                         else -> 5
                     }
                 }
-                binding.recyclerView.adapter = ParkAdapter(sortedParkList)
-            }
-            else {
+                binding.recyclerView.adapter = ParkAdapter(sortedParkList.toMutableList())
+            } else {
                 binding.sortdBtn.setBackgroundResource(R.drawable.black_button)
                 binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.white))
                 binding.recyclerView.adapter = ParkAdapter(parkList)
@@ -120,14 +121,69 @@ class MainActivity : AppCompatActivity() {
                         else -> 5
                     }
                 }
-                binding.recyclerView.adapter = ParkAdapter(sortedParkList)
-            }
-            else {
+                binding.recyclerView.adapter = ParkAdapter(sortedParkList.toMutableList())
+            } else {
                 binding.sortaBtn.setBackgroundResource(R.drawable.black_button)
                 binding.sortaBtn.setTextColor(ContextCompat.getColor(this, R.color.white))
                 binding.recyclerView.adapter = ParkAdapter(parkList)
             }
 
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://openapi.seoul.go.kr:8088/")
+            .build()
+
+        val service = retrofit.create(ParkApiService::class.java)
+
+        Park.parks.forEach { park ->
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    val response: Response<ResponseBody> = service.getParkData(park)
+
+                    if (response.isSuccessful) {
+                        val responseBody: ResponseBody? = response.body()
+                        if (responseBody != null) {
+                            val data = parseParkData(responseBody)
+
+                            // Find the ParkItem with matching name and update its properties
+                            val foundItem = parkList.find { it.name == data[0] }
+
+                            if (foundItem == null) {
+                                parkList.add(
+                                    ParkItem(
+                                        data[0],
+                                        data[1],
+                                        data[2],
+                                        data[3],
+                                        data[4],
+                                        data[5],
+                                        data[6]
+                                    )
+                                )
+                            } else {
+                                foundItem.let {
+                                    it.congestLevel = data[1]
+                                    it.temp = data[2]
+                                    it.minTemp = data[3]
+                                    it.maxTemp = data[4]
+                                    it.skyStatus = data[6]
+                                }
+                            }
+                            Log.d("API_NEW", data.toString())
+
+                            launch(Dispatchers.Main) {
+                                binding.recyclerView.adapter?.notifyDataSetChanged()
+                            }
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.e("API", e.toString())
+                }
+            }
         }
     }
 }

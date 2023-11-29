@@ -38,6 +38,7 @@ object Park {
         "청와대")
 
     val parkList = ArrayList<ParkItem>()
+    var newParkList = ArrayList<ParkItem>()
 }
 
 data class FCST_PPLTN(
