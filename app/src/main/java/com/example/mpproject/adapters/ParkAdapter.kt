@@ -1,6 +1,7 @@
 package com.example.mpproject.adapters
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -30,6 +31,8 @@ class ParkAdapter(val parkList: List<ParkItem>) : RecyclerView.Adapter<ParkAdapt
 
         val currentTime = LocalTime.now()
         val hour = currentTime.hour
+
+        Log.d("h", hour.toString())
 
         when (parkList[position].skyStatus) {
             "맑음" -> {

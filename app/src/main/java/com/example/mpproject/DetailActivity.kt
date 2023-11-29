@@ -75,6 +75,11 @@ class DetailActivity : AppCompatActivity() {
 
                             val weatherBundle = Bundle().apply {
                                 putSerializable("fcstWeather", DataWeather(data["fcstWeather"]))
+                                putString("temp", data["temp"].toString())
+                                putString("maxTemp", data["maxTemp"].toString())
+                                putString("minTemp", data["minTemp"].toString())
+                                putString("sensibleTemp", data["sensibleTemp"].toString())
+                                putString("precptMsg", data["precptMsg"].toString())
                             }
 
                             val dustBundle = Bundle().apply {

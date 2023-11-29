@@ -32,6 +32,7 @@
                 android:text="🌤️"
                 android:layout_marginRight="2dp"
                 android:textColor="@color/white"
+                android:fontFamily="@font/prtendardsb"
                 android:textSize="18dp"
                 ></TextView>
             <TextView

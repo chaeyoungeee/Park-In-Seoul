@@ -156,7 +156,7 @@ suspend fun parseParkDetailData(responseBody: ResponseBody): Map<Any, Any> {
                         var currentForecast2 = WeatherItem(
                             DT =  "",
                             temp = "",
-                            preciptaiton = "",
+                            preciptation = "",
                             preceptType = "",
                             rainChance = "",
                             skyStatus = "",
@@ -176,7 +176,7 @@ suspend fun parseParkDetailData(responseBody: ResponseBody): Map<Any, Any> {
                                         }
                                         "PRECIPITATION" -> {
                                             parser.next()
-                                            currentForecast2.preciptaiton = parser.text ?: ""
+                                            currentForecast2.preciptation = parser.text ?: ""
                                         }
                                         "PRECPT_TYPE" -> {
                                             parser.next()
