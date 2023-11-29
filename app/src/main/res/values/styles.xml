@@ -1,0 +1,24 @@
+<resources>
+
+    <style name="Widget.Mpproject.AppWidget.Container" parent="android:Widget">
+        <item name="android:id">@android:id/background</item>
+        <item name="android:background">?android:attr/colorBackground</item>
+    </style>
+
+    <style name="Widget.Mpproject.AppWidget.InnerView" parent="android:Widget">
+        <item name="android:background">?android:attr/colorBackground</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TabTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/black</item>                  <!-- 배경 -->
+        <item name="android:textColorPrimary">@color/white</item>      <!-- 탭바 선택된 텍스트 -->
+        <item name="android:textColorSecondary">@color/gray</item>     <!-- 탭바 텍스트 -->
+        <item name="colorAccent">@color/white</item>                    <!-- 하단 움직이는 바 색-->
+    </style>
+
+    <style name="TabText" parent="TextAppearance.Design.Tab">
+        <item name="fontFamily">@font/prtendardsb</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+</resources>
