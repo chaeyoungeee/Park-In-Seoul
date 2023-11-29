@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 //                }
 //            }
 //        }
-        binding.recyclerView.layoutManager = GridLayoutManager(this, 2)
+        binding.recyclerView.layoutManager = GridLayoutManager(this, 1)
         binding.recyclerView.adapter = ParkAdapter(parkList)
 
         binding.sortdBtn.setOnClickListener {
@@ -77,10 +77,10 @@ class MainActivity : AppCompatActivity() {
                 if (isSortaBtnClick) {
                     isSortaBtnClick = !isSortaBtnClick
                     binding.sortaBtn.setBackgroundResource(R.drawable.black_button)
-                    binding.sortaBtn.setTextColor(ContextCompat.getColor(this, R.color.white))
+//                    binding.sortaBtn.setTextColor(ContextCompat.getColor(this, R.color.dark_gray))
                 }
                 binding.sortdBtn.setBackgroundResource(R.drawable.white_button)
-                binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.black))
+//                binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.black))
 
                 val sortedParkList = parkList.sortedBy {
                     when (it.congestLevel) {
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
                 binding.recyclerView.adapter = ParkAdapter(sortedParkList.toMutableList())
             } else {
                 binding.sortdBtn.setBackgroundResource(R.drawable.black_button)
-                binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.white))
+//                binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.dark_gray))
                 binding.recyclerView.adapter = ParkAdapter(parkList)
             }
 
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
                 if (isSortdBtnClick) {
                     isSortdBtnClick = !isSortdBtnClick
                     binding.sortdBtn.setBackgroundResource(R.drawable.black_button)
-                    binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.white))
+//                    binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.dark_gray))
                 }
                 binding.sortaBtn.setBackgroundResource(R.drawable.white_button)
                 binding.sortaBtn.setTextColor(ContextCompat.getColor(this, R.color.black))
@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
                 binding.recyclerView.adapter = ParkAdapter(sortedParkList.toMutableList())
             } else {
                 binding.sortaBtn.setBackgroundResource(R.drawable.black_button)
-                binding.sortaBtn.setTextColor(ContextCompat.getColor(this, R.color.white))
+//                binding.sortaBtn.setTextColor(ContextCompat.getColor(this, R.color.dark_gray))
                 binding.recyclerView.adapter = ParkAdapter(parkList)
             }
 
@@ -174,6 +174,7 @@ class MainActivity : AppCompatActivity() {
                                 }
                             }
                             Log.d("API_NEW", data.toString())
+                            Log.d("LIST_SIZE", parkList.size.toString())
 
                             launch(Dispatchers.Main) {
                                 binding.recyclerView.adapter?.notifyDataSetChanged()

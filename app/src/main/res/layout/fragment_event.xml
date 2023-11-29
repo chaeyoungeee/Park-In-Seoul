@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/black"
     tools:context=".fragments.EventFragment">
 
     <ScrollView
@@ -34,9 +33,9 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/prtendardsb"
                 android:text="진행 중인 행사가 없습니다."
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_marginBottom="20dp"
-                android:textSize="22dp" />
+                android:textSize="18dp" />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

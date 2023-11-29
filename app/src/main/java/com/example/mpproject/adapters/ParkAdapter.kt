@@ -22,6 +22,7 @@ class ParkAdapter(val parkList: MutableList<ParkItem>) : RecyclerView.Adapter<Pa
     }
 
     override fun onBindViewHolder(holder: ParkAdapter.Holder, position: Int) {
+        holder.parkImg.clipToOutline = true
         holder.name.text = parkList[position].name
         holder.congestLevel.text = parkList[position].congestLevel
 //      holder.temp.text = parkList[position].temp + "℃"
@@ -105,6 +106,7 @@ class ParkAdapter(val parkList: MutableList<ParkItem>) : RecyclerView.Adapter<Pa
                 intent.putExtra("name", clickedPark.name)
                 intent.putExtra("congestLevel", clickedPark.congestLevel)
                 intent.putExtra("img", parkList[position].code.lowercase())
+
                 binding.root.context.startActivity(intent)
             }
         }

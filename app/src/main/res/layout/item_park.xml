@@ -1,62 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/black"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="15dp">
 
         <ImageView
             android:id="@+id/parkImg"
-            android:scaleType = "centerCrop"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            app:srcCompat="@drawable/poi085" />
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginRight="17dp"
+            android:background="@drawable/round_corner_border"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="7dp"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/skyStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🌤️"
-                android:layout_marginRight="2dp"
-                android:textColor="@color/white"
-                android:fontFamily="@font/prtendardsb"
-                android:textSize="18dp"
-                ></TextView>
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/prtendardeb"
-                android:singleLine="true"
-                android:text="공원명"
-                android:textColor="@color/white"
-                android:textSize="18dp" />
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/prtendardm"
+                    android:singleLine="true"
+                    android:text="공원명"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -65,64 +53,69 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/prtendardb"
+                    android:fontFamily="@font/prtendardm"
                     android:text="⦁"
-                    android:textColor="@color/white"
+                    android:textColor="@color/green"
                     android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/congestLevel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:fontFamily="@font/prtendardb"
+                    android:fontFamily="@font/prtendardm"
                     android:text="혼잡도"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="16dp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/minTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/prtendardsb"
+                    android:fontFamily="@font/prtendardm"
                     android:text="최저"
-                    android:textColor="@color/light_gray"
-                    android:textSize="16dp" />
+                    android:textColor="@color/gray"
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/prtendardsb"
-                    android:text="/"
-                    android:textColor="@color/light_gray"
-                    android:textSize="16dp" />
+                    android:fontFamily="@font/prtendardm"
+                    android:text=" | "
+                    android:textColor="@color/gray"
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/maxTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/prtendardsb"
+                    android:fontFamily="@font/prtendardm"
                     android:text="최고"
-                    android:textColor="@color/light_gray"
-                    android:textSize="16dp" />
+                    android:textColor="@color/gray"
+                    android:textSize="14dp" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/skyStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:text="🌤️"
+                android:textSize="14dp"></TextView>
         </LinearLayout>
 
-        <!--        <TextView-->
-<!--            android:textColor="@color/black"-->
-<!--            android:id="@+id/temp"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/prtendardsb"-->
-<!--            android:text="기온" />-->
-
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_marginHorizontal="15dp"
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/light_gray" />
+
+</LinearLayout>

@@ -4,29 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_margin="5dp"
-        android:background="@color/black"
+
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:layout_margin="10dp"
+            android:layout_margin="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="28dp"
-            android:textColor="@color/white"
+            android:textSize="22dp"
+            android:textColor="@color/black"
             android:fontFamily="@font/prtendardb"
-            android:text="🌳 파크 인 서울" />
+            android:text="파크 인 서울" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:background="@color/light_gray"
+            android:layout_height="7dp" />
 
         <LinearLayout
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginVertical="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -34,32 +40,29 @@
                 android:id="@+id/sortdBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="18dp"
-                android:paddingRight="18dp"
+                android:paddingHorizontal="15dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/black_button"
-                android:fontFamily="@font/prtendardsb"
-                android:text="🙅🏻 혼잡도 낮은 순"
-                android:textSize="16dp"
-                android:textColor="@color/white" />
+                android:fontFamily="@font/prtendardm"
+                android:text="🙅\🏻 혼잡도 낮은 순"
+                android:textSize="15dp"
+                android:textColor="@color/dark_gray" />
             <Button
                 android:id="@+id/sortaBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="18dp"
-                android:paddingRight="18dp"
-                android:textSize="16dp"
+                android:paddingHorizontal="15dp"
+                android:textSize="15dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/black_button"
-                android:fontFamily="@font/prtendardsb"
+                android:fontFamily="@font/prtendardm"
                 android:text="🙋🏻 혼잡도 높은 순"
-                android:textColor="@color/white" />
+                android:textColor="@color/dark_gray" />
         </LinearLayout>
 
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:background="@color/black"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -68,7 +71,11 @@
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
     </LinearLayout>
 
 </LinearLayout>

@@ -55,11 +55,11 @@ class CongestFragment : Fragment() {
         fcstPopulationList = (fcstPopulation?.fcstPopulation as? List<FCST_PPLTN>)
 
         if (fcstPopulationList?.size  != 0) {
-            val entries = ArrayList<BarEntry>() // 데이터를 담을 Arraylist
+            val entries = ArrayList<BarEntry>()
 
             barChart = binding.chart as BarChart
 
-            val barData = BarData() // 차트에 담길 데이터
+            val barData = BarData()
 
             fcstPopulation?.let { populationList ->
                 for (i in 0 until 9) {
@@ -72,27 +72,28 @@ class CongestFragment : Fragment() {
 
 
             val barDataSet =
-                BarDataSet(entries, "bardataset") // 데이터가 담긴 Arraylist 를 BarDataSet 으로 변환한다.
-            barDataSet.colors = addColors() // 해당 BarDataSet 색 설정 :: 각 막대 과 관련된 세팅은 여기서 설정한다.
-            barData.addDataSet(barDataSet) // 해당 BarDataSet 을 적용될 차트에 들어갈 DataSet 에 넣는다.
+                BarDataSet(entries, "bardataset")
+            barDataSet.colors = addColors()
+            barDataSet.setDrawValues(false)
+            barData.addDataSet(barDataSet)
 
             barChart?.run {
                 axisLeft.run {
                     setDrawGridLines(false)
                     setDrawAxisLine(true)
-                    axisLineColor = ContextCompat.getColor(context, R.color.black)
+                    axisLineColor = ContextCompat.getColor(context, R.color.white)
                     setDrawLabels(true)
-                    textColor = ContextCompat.getColor(context, R.color.white)
-                    textSize = 15f
+                    textColor = ContextCompat.getColor(context, R.color.black)
+                    textSize = 12f
                 }
                 xAxis.run {
                     position = XAxis.XAxisPosition.BOTTOM
                     setDrawGridLines(false)
-                    axisLineColor = ContextCompat.getColor(context, R.color.black)
+                    axisLineColor = ContextCompat.getColor(context, R.color.white)
                     setDrawAxisLine(true)
-                    textColor = ContextCompat.getColor(context, R.color.white)
+                    textColor = ContextCompat.getColor(context, R.color.black)
                     valueFormatter = MyXAxisFommater()
-                    textSize = 15f
+                    textSize = 12f
                 }
 
 

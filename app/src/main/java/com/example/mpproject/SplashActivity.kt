@@ -32,7 +32,7 @@ class SplashActivity : AppCompatActivity() {
 
         val service = retrofit.create(ParkApiService::class.java)
 
-        parks.subList(0, 8).forEach { park ->
+        parks.subList(0, 5).forEach { park ->
             GlobalScope.launch(Dispatchers.IO) {
                 try {
                     val response: Response<ResponseBody> = service.getParkData(park)
@@ -42,13 +42,13 @@ class SplashActivity : AppCompatActivity() {
                         if (responseBody != null) {
                             val data = parseParkData(responseBody)
                             parkList.add(ParkItem(data[0], data[1], data[2], data[3], data[4], data[5], data[6]))
-//                            Log.d("API", "결과: $parkList")
+                            Log.d("INIT_LIST_SIZE", parkList.size.toString())
                         }
                     }
                 } catch (e: Exception) {
                     Log.e("API", e.toString())
                 } finally {
-                    if (parkList.size == 8) {
+                    if (parkList.size == 4) {
                         launch(Dispatchers.Main) {
                             Handler().postDelayed({
                                 val intent = Intent(this@SplashActivity, MainActivity::class.java)

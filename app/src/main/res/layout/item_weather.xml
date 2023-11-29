@@ -11,74 +11,74 @@
 
     <TextView
         android:gravity="center_vertical"
-        android:height="50dp"
+        android:height="45dp"
         android:id="@+id/DT"
         android:padding="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="23시"
-        android:fontFamily="@font/prtendardsb"
-        android:textColor="@color/white"
-        android:textSize="18dp"
+        android:fontFamily="@font/prtendardm"
+        android:textColor="@color/black"
+        android:textSize="16dp"
         ></TextView>
     <TextView
         android:gravity="center_vertical"
-        android:height="50dp"
+        android:height="45dp"
         android:id="@+id/skyStatus"
         android:padding="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="☀️"
-        android:textColor="@color/white"
-        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"
         android:fontFamily="@font/tossface"
         ></TextView>
     <TextView
         android:gravity="center_vertical"
-        android:height="50dp"
+        android:height="45dp"
         android:id="@+id/temp"
-        android:fontFamily="@font/prtendardsb"
+        android:fontFamily="@font/prtendardm"
         android:padding="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-2"
-        android:textColor="@color/white"
-        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"
         ></TextView>
     <TextView
         android:gravity="center_vertical"
-        android:height="50dp"
+        android:height="45dp"
         android:id="@+id/preciptation"
-        android:fontFamily="@font/prtendardsb"
+        android:fontFamily="@font/prtendardm"
         android:padding="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1.0"
-        android:textColor="@color/white"
-        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"
         ></TextView>
+<!--    <TextView-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:height="45dp"-->
+<!--        android:id="@+id/preceptType"-->
+<!--        android:padding="10dp"-->
+<!--        android:fontFamily="@font/prtendardm"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="눈️"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="16dp"-->
+<!--        ></TextView>-->
     <TextView
         android:gravity="center_vertical"
-        android:height="50dp"
-        android:id="@+id/preceptType"
-        android:padding="10dp"
-        android:fontFamily="@font/prtendardsb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="눈️"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        ></TextView>
-    <TextView
-        android:gravity="center_vertical"
-        android:height="50dp"
+        android:height="45dp"
         android:id="@+id/rainChance"
         android:padding="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/prtendardsb"
+        android:fontFamily="@font/prtendardm"
         android:text="30"
-        android:textColor="@color/white"
-        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"
         ></TextView>
 </LinearLayout>

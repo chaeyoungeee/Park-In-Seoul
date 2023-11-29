@@ -20,7 +20,7 @@ class WeatherAdapter(val weatherList: List<WeatherItem>) : RecyclerView.Adapter<
         } else {
             holder.preciptation.text = weatherList[position].preciptation + "mm"
         }
-        holder.preceptType.text = weatherList[position].preceptType
+//        holder.preceptType.text = weatherList[position].preceptType
         holder.rainChance.text = weatherList[position].rainChance + "%"
         holder.skyStatus.text = weatherList[position].skyStatus
 
@@ -62,7 +62,7 @@ class WeatherAdapter(val weatherList: List<WeatherItem>) : RecyclerView.Adapter<
         val DT = binding.DT
         val temp = binding.temp
         val preciptation = binding.preciptation
-        val preceptType = binding.preceptType
+//        val preceptType = binding.preceptType
         val rainChance = binding.rainChance
         val skyStatus = binding.skyStatus
     }

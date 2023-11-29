@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/black"
     tools:context=".fragments.WeatherFragment">
 
 
@@ -32,13 +31,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/black_button"
-                        android:fontFamily="@font/prtendardsb"
+                        android:background="@drawable/white_button"
+                        android:fontFamily="@font/prtendardm"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
                         android:text="🔥기온/체감온도"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -52,10 +51,10 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
 
-                            android:fontFamily="@font/prtendardsb"
+                            android:fontFamily="@font/prtendardm"
                             android:text="좋음"
-                            android:textColor="@color/white"
-                            android:textSize="18dp" />
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
 
 
                         <TextView
@@ -64,10 +63,10 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
 
-                            android:fontFamily="@font/prtendardsb"
+                            android:fontFamily="@font/prtendardm"
                             android:text="(1㎍/㎡)"
-                            android:textColor="@color/white"
-                            android:textSize="18dp" />
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -80,13 +79,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/black_button"
-                        android:fontFamily="@font/prtendardsb"
+                        android:background="@drawable/white_button"
+                        android:fontFamily="@font/prtendardm"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
                         android:text="🧐 최저/최고기온"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -100,10 +99,10 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
 
-                            android:fontFamily="@font/prtendardsb"
+                            android:fontFamily="@font/prtendardm"
                             android:text="좋음"
-                            android:textColor="@color/white"
-                            android:textSize="18dp" />
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
 
                         <TextView
                             android:id="@+id/maxTemp"
@@ -111,10 +110,10 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
 
-                            android:fontFamily="@font/prtendardsb"
+                            android:fontFamily="@font/prtendardm"
                             android:text="(1㎍/㎡)"
-                            android:textColor="@color/white"
-                            android:textSize="18dp" />
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -128,13 +127,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/black_button"
-                    android:fontFamily="@font/prtendardsb"
+                    android:background="@drawable/white_button"
+                    android:fontFamily="@font/prtendardm"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="10dp"
                     android:text="☔️ 강수 정보"
-                    android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/precptMsg"
@@ -142,10 +141,10 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/prtendardsb"
+                    android:fontFamily="@font/prtendardm"
                     android:text="13℃"
-                    android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
             </LinearLayout>
 
 
@@ -182,73 +181,73 @@
                             android:id="@+id/DT"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:height="50dp"
-                            android:fontFamily="@font/prtendardsb"
+                            android:height="45dp"
+                            android:fontFamily="@font/prtendardm"
                             android:gravity="center_vertical"
                             android:padding="10dp"
                             android:text="시간"
-                            android:textColor="@color/white"
-                            android:textSize="18dp"></TextView>
+                            android:textColor="@color/black"
+                            android:textSize="16dp"></TextView>
 
                         <TextView
                             android:id="@+id/skyStatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:height="50dp"
+                            android:height="45dp"
                             android:fontFamily="@font/tossface"
                             android:gravity="center_vertical"
                             android:padding="10dp"
                             android:text="날씨️"
-                            android:textColor="@color/white"
-                            android:textSize="18dp"></TextView>
+                            android:textColor="@color/black"
+                            android:textSize="16dp"></TextView>
 
                         <TextView
                             android:id="@+id/temp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:height="50dp"
-                            android:fontFamily="@font/prtendardsb"
+                            android:height="45dp"
+                            android:fontFamily="@font/prtendardm"
                             android:gravity="center_vertical"
                             android:padding="10dp"
                             android:text="기온"
-                            android:textColor="@color/white"
-                            android:textSize="18dp"></TextView>
+                            android:textColor="@color/black"
+                            android:textSize="16dp"></TextView>
 
                         <TextView
                             android:id="@+id/preciptation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:height="50dp"
-                            android:fontFamily="@font/prtendardsb"
+                            android:height="45dp"
+                            android:fontFamily="@font/prtendardm"
                             android:gravity="center_vertical"
                             android:padding="10dp"
                             android:text="강수량"
-                            android:textColor="@color/white"
-                            android:textSize="18dp"></TextView>
+                            android:textColor="@color/black"
+                            android:textSize="16dp"></TextView>
 
-                        <TextView
-                            android:id="@+id/preceptType"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:height="50dp"
-                            android:fontFamily="@font/prtendardsb"
-                            android:gravity="center_vertical"
-                            android:padding="10dp"
-                            android:text="강수형태"
-                            android:textColor="@color/white"
-                            android:textSize="18dp"></TextView>
+<!--                        <TextView-->
+<!--                            android:id="@+id/preceptType"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:height="45dp"-->
+<!--                            android:fontFamily="@font/prtendardm"-->
+<!--                            android:gravity="center_vertical"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:text="강수형태"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="16dp"></TextView>-->
 
                         <TextView
                             android:id="@+id/rainChance"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:height="50dp"
-                            android:fontFamily="@font/prtendardsb"
+                            android:height="45dp"
+                            android:fontFamily="@font/prtendardm"
                             android:gravity="center_vertical"
                             android:padding="10dp"
                             android:text="강수확률"
-                            android:textColor="@color/white"
-                            android:textSize="18dp"></TextView>
+                            android:textColor="@color/black"
+                            android:textSize="16dp"></TextView>
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView

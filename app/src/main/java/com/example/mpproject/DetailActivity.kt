@@ -61,7 +61,7 @@ class DetailActivity : AppCompatActivity() {
                     val responseBody: ResponseBody? = response.body()
                     if (responseBody != null) {
                         val data = parseParkDetailData(responseBody)
-//                        Log.d("event api", "결과: ${data}")
+                        Log.d("event api", "결과: ${data}")
 
                         lifecycleScope.launch(Dispatchers.Main) {
                             binding.sunrize.text = data["sunrize"]?.toString()

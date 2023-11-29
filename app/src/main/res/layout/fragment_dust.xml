@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".fragments.Dustragment">
 
     <LinearLayout
@@ -16,28 +15,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:fontFamily="@font/prtendardsb"
+            android:fontFamily="@font/prtendardm"
             android:text="호흡기가 예민하신 분들은 몸상태 유의하며 활동해주세요."
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_marginBottom="20dp"
-            android:textSize="22dp" />
+            android:textSize="18dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginBottom="15dp">
-
+ㅌㄱ
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/black_button"
-                android:fontFamily="@font/prtendardsb"
+                android:background="@drawable/white_button"
+                android:fontFamily="@font/prtendardm"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="10dp"
                 android:text="🧐 통합대기환경지수"
-                android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
                 <TextView
                     android:layout_margin="10dp"
@@ -45,10 +44,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/prtendardsb"
+                    android:fontFamily="@font/prtendardm"
                     android:text="보통"
-                    android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -65,13 +64,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/black_button"
-                    android:fontFamily="@font/prtendardsb"
+                    android:background="@drawable/white_button"
+                    android:fontFamily="@font/prtendardm"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="10dp"
                     android:text="😷 미세먼지"
-                    android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -85,10 +84,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
 
-                        android:fontFamily="@font/prtendardsb"
+                        android:fontFamily="@font/prtendardm"
                         android:text="좋음"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
 
 
                     <TextView
@@ -97,10 +96,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
 
-                        android:fontFamily="@font/prtendardsb"
+                        android:fontFamily="@font/prtendardm"
                         android:text="(1㎍/㎡)"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -113,13 +112,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/black_button"
-                    android:fontFamily="@font/prtendardsb"
+                    android:background="@drawable/white_button"
+                    android:fontFamily="@font/prtendardm"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="10dp"
                     android:text="😷 초미세먼지"
-                    android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -133,10 +132,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
 
-                        android:fontFamily="@font/prtendardsb"
+                        android:fontFamily="@font/prtendardm"
                         android:text="좋음"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
 
                     <TextView
                         android:id="@+id/pm25"
@@ -144,10 +143,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
 
-                        android:fontFamily="@font/prtendardsb"
+                        android:fontFamily="@font/prtendardm"
                         android:text="(1㎍/㎡)"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
