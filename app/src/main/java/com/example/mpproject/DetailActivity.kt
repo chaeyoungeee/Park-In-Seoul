@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.mpproject.adapters.ViewPagerAdapter
-import com.example.mpproject.data.Data
+import com.example.mpproject.data.DataEvent
+import com.example.mpproject.data.DataPopulation
+import com.example.mpproject.data.DataWeather
 import com.example.mpproject.databinding.ActivityDetailBinding
 import com.example.mpproject.interfaces.ParkApiService
 import com.google.android.material.tabs.TabLayoutMediator
@@ -67,11 +69,12 @@ class DetailActivity : AppCompatActivity() {
 
 
                             val congestBundle = Bundle().apply {
-                                putSerializable("fcstPopulation", Data(data["fcstPopulation"]))
+                                putSerializable("fcstPopulation", DataPopulation(data["fcstPopulation"]))
                                 putString("congestMsg", data["congestMsg"].toString())
                             }
 
                             val weatherBundle = Bundle().apply {
+                                putSerializable("fcstWeather", DataWeather(data["fcstWeather"]))
                             }
 
                             val dustBundle = Bundle().apply {
@@ -84,8 +87,7 @@ class DetailActivity : AppCompatActivity() {
                             }
 
                             val eventBundle = Bundle().apply {
-
-                                putSerializable("event", Data(data["event"]))
+                                putSerializable("event", DataEvent(data["event"]))
                             }
 
                             // Adapter에 각 Fragment에 전달할 Bundle 전달

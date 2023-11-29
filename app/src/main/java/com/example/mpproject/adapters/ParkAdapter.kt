@@ -33,14 +33,14 @@ class ParkAdapter(val parkList: List<ParkItem>) : RecyclerView.Adapter<ParkAdapt
 
         when (parkList[position].skyStatus) {
             "맑음" -> {
-                when {
-                    hour >= 6 || hour < 20 -> holder.skyStatus.text = "☀️"
+                when (hour) {
+                    in 6..19 -> holder.skyStatus.text = "☀️"
                     else -> holder.skyStatus.text = "🌙"
                 }
             }
             "구름 많음" -> {
-                when {
-                    hour >= 6 || hour < 20 -> holder.skyStatus.text = "⛅️"
+                when (hour) {
+                    in 6..19 -> holder.skyStatus.text = "⛅️"
                     else -> holder.skyStatus.text = "🌥️"
                 }
             }
