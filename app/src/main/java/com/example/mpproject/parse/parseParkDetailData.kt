@@ -1,6 +1,7 @@
 import android.util.Xml
 import com.example.mpproject.data.FCST_PPLTN
 import com.example.mpproject.models.EventItem
+import com.example.mpproject.models.WeatherItem
 import okhttp3.ResponseBody
 import org.xmlpull.v1.XmlPullParser
 
@@ -41,7 +42,7 @@ suspend fun parseParkDetailData(responseBody: ResponseBody): Map<Any, Any> {
 
 
     val fcstPopulation = mutableListOf<FCST_PPLTN>()
-    val fcstWeather = mutableListOf<FCST_24>()
+    val fcstWeather = mutableListOf<WeatherItem>()
     val event = mutableListOf<EventItem>()
 
     while (eventType != XmlPullParser.END_DOCUMENT) {
@@ -152,7 +153,7 @@ suspend fun parseParkDetailData(responseBody: ResponseBody): Map<Any, Any> {
                     "FCST24HOURS" -> {
                         // 새로운 예보 객체를 생성
 
-                        var currentForecast2 = FCST_24(
+                        var currentForecast2 = WeatherItem(
                             DT =  "",
                             temp = "",
                             preciptaiton = "",

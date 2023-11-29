@@ -46,5 +46,3 @@ data class FCST_PPLTN(
    var populationMin: String,
    var populationMax: String
 )
-
-data class Data(val fcstPopulation: Any?) : Serializable
