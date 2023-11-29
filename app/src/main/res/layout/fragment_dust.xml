@@ -20,7 +20,7 @@
             android:text="호흡기가 예민하신 분들은 몸상태 유의하며 활동해주세요."
             android:textColor="@color/white"
             android:layout_marginBottom="20dp"
-            android:textSize="23dp" />
+            android:textSize="22dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -14,18 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-
         <TextView
-            android:id="@+id/airMsg2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:id="@+id/title"
             android:layout_marginBottom="7dp"
             android:fontFamily="@font/prtendardsb"
             android:text="실시간 인구 정보 및 인구 전망"
             android:textColor="@color/white"
-            android:textSize="23dp" />
+            android:textSize="22dp" />
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/chart"
@@ -38,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/prtendardsb"
-            android:text="📌 사람이 몰려있을 가능성이 적어요."
+            android:text="사람이 몰려있을 가능성이 적어요."
             android:textColor="@color/white"
             android:textSize="18dp"
             android:layout_marginBottom="5dp"/>
@@ -47,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/prtendardsb"
-            android:text="📌 도보 이동이 쉬워요."
+            android:text="도보 이동이 쉬워요."
             android:textColor="@color/white"
             android:textSize="18dp" />
 

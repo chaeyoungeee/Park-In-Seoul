@@ -8,10 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mpproject.adapters.EventAdapter
-import com.example.mpproject.adapters.ParkAdapter
-import com.example.mpproject.data.Data
-import com.example.mpproject.data.FCST_PPLTN
-import com.example.mpproject.data.Park
+import com.example.mpproject.data.DataEvent
 import com.example.mpproject.databinding.FragmentEventBinding
 import com.example.mpproject.models.EventItem
 
@@ -28,15 +25,13 @@ class EventFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View? {
         _binding = FragmentEventBinding.inflate(inflater, container, false)
 
-        val event = arguments?.getSerializable("event") as Data?
+        val event = arguments?.getSerializable("event") as DataEvent?
 
-        eventList = (event?.fcstPopulation as? List<EventItem>)
+        eventList = (event?.event as? List<EventItem>)
 
         if (eventList?.get(0)?.name != "") {
             binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 1)
             binding.recyclerView.adapter = eventList?.let { EventAdapter(it) }
-
-            Log.d("e", eventList.toString())
         } else {
             binding.recyclerView.visibility = View.GONE
             binding.info.visibility = View.VISIBLE

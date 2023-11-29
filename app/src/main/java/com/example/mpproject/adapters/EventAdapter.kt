@@ -14,7 +14,7 @@ class EventAdapter(val eventList: List<EventItem>) : RecyclerView.Adapter<EventA
     }
 
     override fun onBindViewHolder(holder: EventAdapter.Holder, position: Int) {
-        holder.name.text = "📌 " + eventList[position].name
+        holder.name.text = "✨ " + eventList[position].name
         holder.period.text = eventList[position].period
         holder.place.text = eventList[position].place
     }

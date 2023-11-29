@@ -11,10 +11,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/prtendardsb"
-            android:text="2023 아트서울 특별전 [조각의 시간:울림]"
+            android:text="✨ 2023 아트서울 특별전 [조각의 시간:울림]"
             android:textColor="@color/white"
             android:layout_marginBottom="20dp"
-            android:textSize="20dp" />
+            android:textSize="22dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

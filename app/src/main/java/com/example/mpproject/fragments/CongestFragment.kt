@@ -2,7 +2,6 @@ package com.example.mpproject.fragments
 
 import android.R
 import android.graphics.Color
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.mpproject.data.Data
+import com.example.mpproject.data.DataPopulation
 import com.example.mpproject.data.FCST_PPLTN
 import com.example.mpproject.databinding.FragmentCongestBinding
 import com.github.mikephil.charting.charts.BarChart
@@ -45,15 +44,15 @@ class CongestFragment : Fragment() {
         if (congestMsg != "") {
             if (congestMsg != null) {
                 binding.congestMsg1.text = "📌 " + congestMsg.split(".")[0].toString() + "."
-                binding.congestMsg2.text = "📌 " +  congestMsg.split(".")[1].toString() + "."
-
+                binding.congestMsg2.text = "📌 " + congestMsg.substringAfter(congestMsg.split(".")[0].toString() + ". ")
             }
         } else {
+            binding.title.text = "인구 전망"
             binding.congestMsg1.visibility = View.GONE
             binding.congestMsg2.visibility = View.GONE
         }
 
-        val fcstPopulation = arguments?.getSerializable("fcstPopulation") as Data?
+        val fcstPopulation = arguments?.getSerializable("fcstPopulation") as DataPopulation?
 
         fcstPopulationList = (fcstPopulation?.fcstPopulation as? List<FCST_PPLTN>)
 
@@ -112,6 +111,11 @@ class CongestFragment : Fragment() {
         }
         else {
             binding.chart.visibility = View.GONE
+            binding.title.text = "실시간 인구 정보"
+        }
+
+        if (fcstPopulationList?.size  == 0 && congestMsg == "") {
+            binding.title.text = "인구 정보 데이터가 없습니다."
         }
 
 
