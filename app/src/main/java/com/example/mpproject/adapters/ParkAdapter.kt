@@ -14,7 +14,7 @@ import com.example.mpproject.databinding.ItemParkBinding
 import com.example.mpproject.models.ParkItem
 import java.time.LocalTime
 
-class ParkAdapter(val parkList: MutableList<ParkItem>) : RecyclerView.Adapter<ParkAdapter.Holder>()  {
+class ParkAdapter(val parkList: List<ParkItem>) : RecyclerView.Adapter<ParkAdapter.Holder>()  {
     private val requestCode = "1000"
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParkAdapter.Holder {
         val binding = ItemParkBinding.inflate(LayoutInflater.from(parent.context), parent, false)

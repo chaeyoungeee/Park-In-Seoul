@@ -21,4 +21,11 @@
         <item name="fontFamily">@font/prtendardsb</item>
         <item name="android:textSize">16dp</item>
     </style>
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/prtendardb</item>
+    </style>
+
+    <style name="ToolbarTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">22dp</item> <!-- 텍스트 크기 조절 -->
+    </style>
 </resources>
