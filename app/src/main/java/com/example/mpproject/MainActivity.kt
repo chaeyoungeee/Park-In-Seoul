@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
@@ -26,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private var isSortdBtnClick = false
     private var isSortaBtnClick = false
+    private val spinnerData = listOf("업데이트 순", "혼잡도 낮은 순", "혼잡도 높은 순")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,65 +74,113 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = GridLayoutManager(this, 1)
         binding.recyclerView.adapter = ParkAdapter(parkList)
 
-        binding.sortdBtn.setOnClickListener {
-            isSortdBtnClick = !isSortdBtnClick
-
-            if (isSortdBtnClick) {
-                if (isSortaBtnClick) {
-                    isSortaBtnClick = !isSortaBtnClick
-                    binding.sortaBtn.setBackgroundResource(R.drawable.black_button)
-//                    binding.sortaBtn.setTextColor(ContextCompat.getColor(this, R.color.dark_gray))
-                }
-                binding.sortdBtn.setBackgroundResource(R.drawable.white_button)
-//                binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.black))
-
-                val sortedParkList = parkList.sortedBy {
-                    when (it.congestLevel) {
-                        "여유" -> 1
-                        "보통" -> 2
-                        "약간 붐빔" -> 3
-                        "붐빔" -> 4
-                        else -> 5
+        var spinnerAdapter = ArrayAdapter<String>(this, R.layout.spinner_item, spinnerData)
+        binding.spinner.adapter = spinnerAdapter
+        binding.spinner.setSelection(0)
+        binding.spinner.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when(position) {
+                    0 -> {
+                        binding.recyclerView.adapter = ParkAdapter(parkList)
+                    }
+                    1 -> {
+                        val sortedParkList = parkList.sortedBy {
+                            when (it.congestLevel) {
+                                "여유" -> 1
+                                "보통" -> 2
+                                "약간 붐빔" -> 3
+                                "붐빔" -> 4
+                                else -> 5
+                            }
+                        }
+                        binding.recyclerView.adapter = ParkAdapter(sortedParkList.toMutableList())
+                    }
+                    2 -> {
+                        val sortedParkList = parkList.sortedBy {
+                            when (it.congestLevel) {
+                                "붐빔" -> 1
+                                "약간 붐빔" -> 2
+                                "보통" -> 3
+                                "여유" -> 4
+                                else -> 5
+                            }
+                        }
+                        binding.recyclerView.adapter = ParkAdapter(sortedParkList.toMutableList())
                     }
                 }
-                binding.recyclerView.adapter = ParkAdapter(sortedParkList.toMutableList())
-            } else {
-                binding.sortdBtn.setBackgroundResource(R.drawable.black_button)
-//                binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.dark_gray))
-                binding.recyclerView.adapter = ParkAdapter(parkList)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
             }
 
         }
 
-        binding.sortaBtn.setOnClickListener {
-            isSortaBtnClick = !isSortaBtnClick
-
-            if (isSortaBtnClick) {
-                if (isSortdBtnClick) {
-                    isSortdBtnClick = !isSortdBtnClick
-                    binding.sortdBtn.setBackgroundResource(R.drawable.black_button)
-//                    binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.dark_gray))
-                }
-                binding.sortaBtn.setBackgroundResource(R.drawable.white_button)
-                binding.sortaBtn.setTextColor(ContextCompat.getColor(this, R.color.black))
-
-                val sortedParkList = parkList.sortedBy {
-                    when (it.congestLevel) {
-                        "붐빔" -> 1
-                        "약간 붐빔" -> 2
-                        "보통" -> 3
-                        "여유" -> 4
-                        else -> 5
-                    }
-                }
-                binding.recyclerView.adapter = ParkAdapter(sortedParkList.toMutableList())
-            } else {
-                binding.sortaBtn.setBackgroundResource(R.drawable.black_button)
-//                binding.sortaBtn.setTextColor(ContextCompat.getColor(this, R.color.dark_gray))
-                binding.recyclerView.adapter = ParkAdapter(parkList)
-            }
-
-        }
+//        binding.sortdBtn.setOnClickListener {
+//            isSortdBtnClick = !isSortdBtnClick
+//
+//            if (isSortdBtnClick) {
+//                if (isSortaBtnClick) {
+//                    isSortaBtnClick = !isSortaBtnClick
+//                    binding.sortaBtn.setBackgroundResource(R.drawable.black_button)
+////                    binding.sortaBtn.setTextColor(ContextCompat.getColor(this, R.color.dark_gray))
+//                }
+//                binding.sortdBtn.setBackgroundResource(R.drawable.white_button)
+////                binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.black))
+//
+//                val sortedParkList = parkList.sortedBy {
+//                    when (it.congestLevel) {
+//                        "여유" -> 1
+//                        "보통" -> 2
+//                        "약간 붐빔" -> 3
+//                        "붐빔" -> 4
+//                        else -> 5
+//                    }
+//                }
+//                binding.recyclerView.adapter = ParkAdapter(sortedParkList.toMutableList())
+//            } else {
+//                binding.sortdBtn.setBackgroundResource(R.drawable.black_button)
+////                binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.dark_gray))
+//                binding.recyclerView.adapter = ParkAdapter(parkList)
+//            }
+//
+//        }
+//
+//        binding.sortaBtn.setOnClickListener {
+//            isSortaBtnClick = !isSortaBtnClick
+//
+//            if (isSortaBtnClick) {
+//                if (isSortdBtnClick) {
+//                    isSortdBtnClick = !isSortdBtnClick
+//                    binding.sortdBtn.setBackgroundResource(R.drawable.black_button)
+////                    binding.sortdBtn.setTextColor(ContextCompat.getColor(this, R.color.dark_gray))
+//                }
+//                binding.sortaBtn.setBackgroundResource(R.drawable.white_button)
+//                binding.sortaBtn.setTextColor(ContextCompat.getColor(this, R.color.black))
+//
+//                val sortedParkList = parkList.sortedBy {
+//                    when (it.congestLevel) {
+//                        "붐빔" -> 1
+//                        "약간 붐빔" -> 2
+//                        "보통" -> 3
+//                        "여유" -> 4
+//                        else -> 5
+//                    }
+//                }
+//                binding.recyclerView.adapter = ParkAdapter(sortedParkList.toMutableList())
+//            } else {
+//                binding.sortaBtn.setBackgroundResource(R.drawable.black_button)
+////                binding.sortaBtn.setTextColor(ContextCompat.getColor(this, R.color.dark_gray))
+//                binding.recyclerView.adapter = ParkAdapter(parkList)
+//            }
+//
+//        }
     }
 
     override fun onResume() {

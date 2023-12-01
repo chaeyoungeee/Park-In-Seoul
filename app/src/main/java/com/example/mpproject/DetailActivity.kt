@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import com.google.android.material.tabs.TabLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.mpproject.adapters.ViewPagerAdapter
@@ -42,6 +43,34 @@ class DetailActivity : AppCompatActivity() {
         val img = intent.getStringExtra("img")
         val resourceId = resources.getIdentifier(img, "drawable", packageName)
         binding.parkImg.setImageResource(resourceId)
+
+
+        when (congestLevel) {
+            "여유" -> binding.congestLevel.setTextColor(
+                ContextCompat.getColor(
+                    binding.root.context,
+                    R.color.green
+                )
+            )
+            "보통" -> binding.congestLevel.setTextColor(
+                ContextCompat.getColor(
+                    binding.root.context,
+                    R.color.yellow
+                )
+            )
+            "약간 붐빔" -> binding.congestLevel.setTextColor(
+                ContextCompat.getColor(
+                    binding.root.context,
+                    R.color.orange
+                )
+            )
+            "붐빔" -> binding.congestLevel.setTextColor(
+                ContextCompat.getColor(
+                    binding.root.context,
+                    R.color.red
+                )
+            )
+        }
 
         val retrofit = Retrofit.Builder()
             .baseUrl("http://openapi.seoul.go.kr:8088/")

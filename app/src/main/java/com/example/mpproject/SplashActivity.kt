@@ -48,7 +48,7 @@ class SplashActivity : AppCompatActivity() {
                 } catch (e: Exception) {
                     Log.e("API", e.toString())
                 } finally {
-                    if (parkList.size == 4) {
+                    if (parkList.size == 5) {
                         launch(Dispatchers.Main) {
                             Handler().postDelayed({
                                 val intent = Intent(this@SplashActivity, MainActivity::class.java)
