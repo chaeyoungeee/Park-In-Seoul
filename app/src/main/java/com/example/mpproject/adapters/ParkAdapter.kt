@@ -90,9 +90,9 @@ class ParkAdapter(val parkList: List<ParkItem>) : RecyclerView.Adapter<ParkAdapt
             )
         }
 
-        db = ParkDatabase.getInstance(holder.binding.root.context)
-
         holder.bookmarkBtn.isSelected = parkList[position].isBookmarked
+
+        db = ParkDatabase.getInstance(holder.binding.root.context)
 
         holder.bookmarkBtn.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {

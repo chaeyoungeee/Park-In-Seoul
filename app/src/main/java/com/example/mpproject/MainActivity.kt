@@ -160,12 +160,12 @@ class MainActivity : AppCompatActivity() {
     // toolbar option menu
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
-        val mSearch = menu.findItem(R.id.action_search)
-        val sv = mSearch?.actionView as? SearchView
+        val menuSearch = menu.findItem(R.id.action_search)
+        val searchView = menuSearch?.actionView as? SearchView
         val bookmarkItem = binding.toolbar.menu.findItem(R.id.action_bookmark)
 
 
-        mSearch.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+        menuSearch.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
 
             override fun onMenuItemActionExpand(item: MenuItem): Boolean {
                 // 검색 버튼 눌렸을 때
@@ -183,9 +183,9 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-//        sv?.isSubmitButtonEnabled = true
+//        searchView?.isSubmitButtonEnabled = true
 
-        sv?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 // text submit
                 Log.d("Search", "검색: $query")
