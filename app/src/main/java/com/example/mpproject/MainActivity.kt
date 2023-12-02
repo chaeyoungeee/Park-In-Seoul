@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val spinnerData = listOf("업데이트 순", "혼잡도 낮은 순", "혼잡도 높은 순")
     private var isBookmarkSelected = false
+    private var bookmarkList: List<ParkItem> = listOf()
+    private var searchList: List<ParkItem> = listOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -158,21 +160,25 @@ class MainActivity : AppCompatActivity() {
     // toolbar option menu
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
-        val mSearch = binding.toolbar.menu.findItem(R.id.action_search)
+        val mSearch = menu.findItem(R.id.action_search)
         val sv = mSearch?.actionView as? SearchView
+        val bookmarkItem = binding.toolbar.menu.findItem(R.id.action_bookmark)
+
 
         mSearch.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
 
             override fun onMenuItemActionExpand(item: MenuItem): Boolean {
                 // 검색 버튼 눌렸을 때
-                binding.toolbar.menu.findItem(R.id.action_bookmark)?.isVisible = false
+                isBookmarkSelected = false
+                bookmarkItem.setIcon(R.drawable.unselected_bookmark)
                 return true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
                 // 뒤로가기 버튼 눌렸을 때
-                binding.toolbar.menu.findItem(R.id.action_bookmark)?.isVisible = true
                 binding.recyclerView.adapter = ParkAdapter(parkList)
+                isBookmarkSelected = false
+                bookmarkItem.setIcon(R.drawable.unselected_bookmark)
                 return true
             }
         })
@@ -183,19 +189,36 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 // text submit
                 Log.d("Search", "검색: $query")
-                val searchList =  parkList.filter { parkItem ->
-                    parkItem.name?.contains(query.orEmpty(), ignoreCase = true) == true
+                if(isBookmarkSelected) {
+                    searchList = bookmarkList.filter { parkItem ->
+                        parkItem.name?.contains(query.orEmpty(), ignoreCase = true) == true
+                    }
+                    binding.recyclerView.adapter = ParkAdapter(searchList)
+                } else {
+                    searchList =  parkList.filter { parkItem ->
+                        parkItem.name?.contains(query.orEmpty(), ignoreCase = true) == true
+                    }
+                    binding.recyclerView.adapter = ParkAdapter(searchList)
                 }
-                binding.recyclerView.adapter = ParkAdapter(searchList)
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 // text change
-                val searchList =  parkList.filter { parkItem ->
-                    parkItem.name?.contains(newText.orEmpty(), ignoreCase = true) == true
+                if(isBookmarkSelected) {
+                    val searchList = bookmarkList.filter { parkItem ->
+                        parkItem.name?.contains(newText.orEmpty(), ignoreCase = true) == true
+                    }
+                    binding.recyclerView.adapter = ParkAdapter(searchList)
                 }
-                binding.recyclerView.adapter = ParkAdapter(searchList)
+                else {
+                    val searchList =  parkList.filter { parkItem ->
+                        parkItem.name?.contains(newText.orEmpty(), ignoreCase = true) == true
+                    }
+                    binding.recyclerView.adapter = ParkAdapter(searchList)
+                }
+
+
                 return true
             }
         })
@@ -210,16 +233,17 @@ class MainActivity : AppCompatActivity() {
 
                 if (isBookmarkSelected) {
                     item.setIcon(R.drawable.selected_bookmark)
-                    val bookmarkList: List<ParkItem> = parkList.filter { it.isBookmarked }
+                    bookmarkList = parkList.filter { it.isBookmarked }
                     binding.recyclerView.adapter = ParkAdapter(bookmarkList)
                 } else {
                     item.setIcon(R.drawable.unselected_bookmark)
                     binding.recyclerView.adapter = ParkAdapter(parkList)
                 }
 
+
                 return true
             }
-            else -> return super.onOptionsItemSelected(item)
+            else -> return true
         }
     }
 
