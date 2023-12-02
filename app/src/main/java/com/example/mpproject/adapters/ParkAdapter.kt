@@ -1,6 +1,5 @@
 package com.example.mpproject.adapters
 
-import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,19 +8,29 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mpproject.DetailActivity
+import com.example.mpproject.database.ParkBookmarkEntity
+import com.example.mpproject.database.ParkDatabase
 import com.example.mpproject.R
+import com.example.mpproject.data.Park
 import com.example.mpproject.databinding.ItemParkBinding
 import com.example.mpproject.models.ParkItem
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.time.LocalTime
 
 class ParkAdapter(val parkList: List<ParkItem>) : RecyclerView.Adapter<ParkAdapter.Holder>()  {
-    private val requestCode = "1000"
+    private var db: ParkDatabase? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParkAdapter.Holder {
         val binding = ItemParkBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return Holder(binding)
     }
 
     override fun onBindViewHolder(holder: ParkAdapter.Holder, position: Int) {
+
         holder.parkImg.clipToOutline = true
         holder.name.text = parkList[position].name
         holder.congestLevel.text = parkList[position].congestLevel
@@ -80,6 +89,46 @@ class ParkAdapter(val parkList: List<ParkItem>) : RecyclerView.Adapter<ParkAdapt
                 )
             )
         }
+
+        db = ParkDatabase.getInstance(holder.binding.root.context)
+
+        holder.bookmarkBtn.isSelected = parkList[position].isBookmarked
+
+        holder.bookmarkBtn.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                val temp: Deferred<Boolean> = async(Dispatchers.IO) {
+                    val isBookmarked = db!!.parkDao().getBookmark(parkList[position].name)
+                    if (isBookmarked) {
+                        val bookmarkData = ParkBookmarkEntity(parkList[position].name, !isBookmarked)
+                        db!!.parkDao().deleteBookmark(parkList[position].name)
+//                        Log.d("db1", db!!.parkDao().getAll().toString())
+
+                        val foundItem = Park.parkList.find { it.name == parkList[position].name }
+                        foundItem?.let {
+                            it.isBookmarked = false
+                        }
+
+                        false
+                    } else {
+                        val bookmarkData = ParkBookmarkEntity(parkList[position].name, !isBookmarked)
+                        db!!.parkDao().saveBookmark(bookmarkData)
+//                        Log.d("db2", db!!.parkDao().getAll().toString())
+                        val foundItem = Park.parkList.find { it.name == parkList[position].name }
+                        foundItem?.let {
+                            it.isBookmarked = true
+                        }
+                        true
+                    }
+                }
+
+                // UI 변경
+                val selected = temp.await()
+                Log.d("aa", selected.toString())
+                it.isSelected = selected
+
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -95,6 +144,7 @@ class ParkAdapter(val parkList: List<ParkItem>) : RecyclerView.Adapter<ParkAdapt
         val skyStatus = binding.skyStatus
         val minTemp = binding.minTemp
         val maxTemp = binding.maxTemp
+        val bookmarkBtn = binding.bookmarkBtn
 
         init {
             binding.root.setOnClickListener {

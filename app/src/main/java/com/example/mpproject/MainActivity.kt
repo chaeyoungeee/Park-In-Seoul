@@ -1,6 +1,5 @@
 package com.example.mpproject
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -22,25 +21,89 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.Retrofit
 import com.example.mpproject.data.Park.parkList
+import com.example.mpproject.database.ParkDatabase
 import com.example.mpproject.interfaces.ParkApiService
 import com.example.mpproject.models.ParkItem
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val spinnerData = listOf("업데이트 순", "혼잡도 낮은 순", "혼잡도 높은 순")
+    private var isBookmarkSelected = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://openapi.seoul.go.kr:8088/")
+            .build()
+
+        val service = retrofit.create(ParkApiService::class.java)
+
+        Park.parks.forEach { park ->
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    val response: Response<ResponseBody> = service.getParkData(park)
+
+                    if (response.isSuccessful) {
+                        val responseBody: ResponseBody? = response.body()
+                        if (responseBody != null) {
+                            val data = parseParkData(responseBody)
+
+                            // Find the ParkItem with matching name and update its properties
+                            val foundItem = parkList.find { it.name == data[0] }
+
+                            var db: ParkDatabase? = null
+                            var isBookmarked: Boolean
+                            db = ParkDatabase.getInstance(binding.root.context)
+                            CoroutineScope(Dispatchers.Main).launch {
+                                async(Dispatchers.IO) {
+                                    isBookmarked = db!!.parkDao().getBookmark(data[0])
+                                    foundItem?.let {
+                                        it.congestLevel = data[1]
+                                        it.temp = data[2]
+                                        it.minTemp = data[3]
+                                        it.maxTemp = data[4]
+                                        it.skyStatus = data[6]
+                                        it.isBookmarked = isBookmarked
+                                    }
+                                        ?: parkList.add(
+                                            ParkItem(
+                                                data[0],
+                                                data[1],
+                                                data[2],
+                                                data[3],
+                                                data[4],
+                                                data[5],
+                                                data[6],
+                                                isBookmarked
+                                            )
+                                        )
+                                }
+                            }
+
+                            Log.d("API_NEW", data.toString())
+                            Log.d("LIST_SIZE", parkList.size.toString())
+
+                            launch(Dispatchers.Main) {
+                                binding.recyclerView.adapter?.notifyDataSetChanged()
+                            }
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.e("API", e.toString())
+                }
+            }
+        }
+
         // toolbar
         setSupportActionBar(binding.toolbar)
-
 
         // recycler view
         binding.recyclerView.layoutManager = GridLayoutManager(this, 1)
         binding.recyclerView.adapter = ParkAdapter(parkList)
-
 
         // spinner
         var spinnerAdapter = ArrayAdapter<String>(this, R.layout.spinner_item, spinnerData)
@@ -95,18 +158,20 @@ class MainActivity : AppCompatActivity() {
     // toolbar option menu
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
-        val mSearch = menu.findItem(R.id.action_search)
+        val mSearch = binding.toolbar.menu.findItem(R.id.action_search)
         val sv = mSearch?.actionView as? SearchView
 
         mSearch.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
 
             override fun onMenuItemActionExpand(item: MenuItem): Boolean {
                 // 검색 버튼 눌렸을 때
+                binding.toolbar.menu.findItem(R.id.action_bookmark)?.isVisible = false
                 return true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
                 // 뒤로가기 버튼 눌렸을 때
+                binding.toolbar.menu.findItem(R.id.action_bookmark)?.isVisible = true
                 binding.recyclerView.adapter = ParkAdapter(parkList)
                 return true
             }
@@ -138,63 +203,91 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_bookmark -> {
+                isBookmarkSelected = !isBookmarkSelected
 
-    override fun onResume() {
-        super.onResume()
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://openapi.seoul.go.kr:8088/")
-            .build()
-
-        val service = retrofit.create(ParkApiService::class.java)
-
-        Park.parks.forEach { park ->
-            GlobalScope.launch(Dispatchers.IO) {
-                try {
-                    val response: Response<ResponseBody> = service.getParkData(park)
-
-                    if (response.isSuccessful) {
-                        val responseBody: ResponseBody? = response.body()
-                        if (responseBody != null) {
-                            val data = parseParkData(responseBody)
-
-                            // Find the ParkItem with matching name and update its properties
-                            val foundItem = parkList.find { it.name == data[0] }
-
-                            if (foundItem == null) {
-                                parkList.add(
-                                    ParkItem(
-                                        data[0],
-                                        data[1],
-                                        data[2],
-                                        data[3],
-                                        data[4],
-                                        data[5],
-                                        data[6]
-                                    )
-                                )
-                            } else {
-                                foundItem.let {
-                                    it.congestLevel = data[1]
-                                    it.temp = data[2]
-                                    it.minTemp = data[3]
-                                    it.maxTemp = data[4]
-                                    it.skyStatus = data[6]
-                                }
-                            }
-                            Log.d("API_NEW", data.toString())
-                            Log.d("LIST_SIZE", parkList.size.toString())
-
-                            launch(Dispatchers.Main) {
-                                binding.recyclerView.adapter?.notifyDataSetChanged()
-                            }
-                        }
-                    }
-                } catch (e: Exception) {
-                    Log.e("API", e.toString())
+                if (isBookmarkSelected) {
+                    item.setIcon(R.drawable.selected_bookmark)
+                    val bookmarkList: List<ParkItem> = parkList.filter { it.isBookmarked }
+                    binding.recyclerView.adapter = ParkAdapter(bookmarkList)
+                } else {
+                    item.setIcon(R.drawable.unselected_bookmark)
+                    binding.recyclerView.adapter = ParkAdapter(parkList)
                 }
+
+                return true
             }
+            else -> return super.onOptionsItemSelected(item)
         }
     }
+
+
+//    override fun onResume() {
+//        super.onResume()
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl("http://openapi.seoul.go.kr:8088/")
+//            .build()
+//
+//        val service = retrofit.create(ParkApiService::class.java)
+//
+//        Park.parks.forEach { park ->
+//            GlobalScope.launch(Dispatchers.IO) {
+//                try {
+//                    val response: Response<ResponseBody> = service.getParkData(park)
+//
+//                    if (response.isSuccessful) {
+//                        val responseBody: ResponseBody? = response.body()
+//                        if (responseBody != null) {
+//                            val data = parseParkData(responseBody)
+//
+//                            // Find the ParkItem with matching name and update its properties
+//                            val foundItem = parkList.find { it.name == data[0] }
+//
+//                            var db: ParkDatabase? = null
+//                            var isBookmarked: Boolean
+//                            db = ParkDatabase.getInstance(binding.root.context)
+//                            CoroutineScope(Dispatchers.Main).launch {
+//                                async(Dispatchers.IO) {
+//                                    isBookmarked = db!!.parkDao().getBookmark(data[0])
+//                                    foundItem?.let {
+//                                        it.congestLevel = data[1]
+//                                        it.temp = data[2]
+//                                        it.minTemp = data[3]
+//                                        it.maxTemp = data[4]
+//                                        it.skyStatus = data[6]
+//                                        it.isBookmarked = isBookmarked
+//                                    }
+//                                    ?: parkList.add(
+//                                        ParkItem(
+//                                            data[0],
+//                                            data[1],
+//                                            data[2],
+//                                            data[3],
+//                                            data[4],
+//                                            data[5],
+//                                            data[6],
+//                                            isBookmarked
+//                                        )
+//                                    )
+//                                }
+//                            }
+//
+//                            Log.d("API_NEW", data.toString())
+//                            Log.d("LIST_SIZE", parkList.size.toString())
+//
+//                            launch(Dispatchers.Main) {
+//                                binding.recyclerView.adapter?.notifyDataSetChanged()
+//                            }
+//                        }
+//                    }
+//                } catch (e: Exception) {
+//                    Log.e("API", e.toString())
+//                }
+//            }
+//        }
+//    }
 }
 
 

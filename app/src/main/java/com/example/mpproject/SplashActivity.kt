@@ -7,12 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import com.example.mpproject.database.ParkDatabase
 import com.example.mpproject.databinding.ActivitySplashBinding
 import com.example.mpproject.interfaces.ParkApiService
 import com.example.mpproject.models.ParkItem
 import com.example.mpproject.parse.parseParkData
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -41,7 +44,16 @@ class SplashActivity : AppCompatActivity() {
                         val responseBody: ResponseBody? = response.body()
                         if (responseBody != null) {
                             val data = parseParkData(responseBody)
-                            parkList.add(ParkItem(data[0], data[1], data[2], data[3], data[4], data[5], data[6]))
+                            var db: ParkDatabase? = null
+                            var isBookmarked: Boolean
+                            db = ParkDatabase.getInstance(binding.root.context)
+                            CoroutineScope(Dispatchers.Main).launch {
+                                async(Dispatchers.IO) {
+                                    isBookmarked = db!!.parkDao().getBookmark(data[0])
+                                    parkList.add(ParkItem(data[0], data[1], data[2], data[3], data[4], data[5], data[6], isBookmarked))
+                                }
+                            }
+
                             Log.d("INIT_LIST_SIZE", parkList.size.toString())
                         }
                     }

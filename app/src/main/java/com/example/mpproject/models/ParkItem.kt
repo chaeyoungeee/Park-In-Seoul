@@ -1,5 +1,8 @@
 package com.example.mpproject.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 data class ParkItem(
     val name: String,
     var congestLevel: String,
@@ -8,4 +11,5 @@ data class ParkItem(
     var maxTemp: String,
     var code: String,
     var skyStatus:String,
+    var isBookmarked: Boolean = false
 )

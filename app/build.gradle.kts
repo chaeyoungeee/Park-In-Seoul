@@ -2,6 +2,7 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 
 plugins {
+    id("kotlin-kapt")
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
@@ -49,6 +50,12 @@ android {
 
 
 dependencies {
+    implementation("androidx.room:room-runtime:2.4.3")
+    annotationProcessor("androidx.room:room-compiler:2.4.3")
+    kapt("androidx.room:room-compiler:2.4.3")
+    implementation("androidx.room:room-ktx:2.4.3")
+
+
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")

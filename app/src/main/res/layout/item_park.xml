@@ -21,15 +21,28 @@
             android:background="@drawable/round_corner_border"
             android:scaleType="centerCrop" />
 
-        <LinearLayout
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
+            <Button
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:id="@+id/bookmarkBtn"
+                android:layout_marginTop="2dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/selector_bookmark_btn"
+                app:layout_constraintTop_toTopOf="@+id/info"
+                app:layout_constraintRight_toRightOf="@+id/info" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="255dp">
 
                 <TextView
                     android:id="@+id/name"
@@ -41,74 +54,81 @@
                     android:text="공원명"
                     android:textColor="@color/black"
                     android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/congestCircle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/prtendardm"
+                        android:text="⦁"
+                        android:textColor="@color/green"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/congestLevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/prtendardm"
+                        android:text="혼잡도"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/minTemp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/prtendardm"
+                        android:text="최저"
+                        android:textColor="@color/gray"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/prtendardm"
+                        android:text=" | "
+                        android:textColor="@color/gray"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/maxTemp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/prtendardm"
+                        android:text="최고"
+                        android:textColor="@color/gray"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/skyStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:text="🌤️"
+                    android:textSize="14dp"></TextView>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
             </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/congestCircle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:fontFamily="@font/prtendardm"
-                    android:text="⦁"
-                    android:textColor="@color/green"
-                    android:textSize="16dp" />
-
-                <TextView
-                    android:id="@+id/congestLevel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/prtendardm"
-                    android:text="혼잡도"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/minTemp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/prtendardm"
-                    android:text="최저"
-                    android:textColor="@color/gray"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/prtendardm"
-                    android:text=" | "
-                    android:textColor="@color/gray"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:id="@+id/maxTemp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/prtendardm"
-                    android:text="최고"
-                    android:textColor="@color/gray"
-                    android:textSize="14dp" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/skyStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:text="🌤️"
-                android:textSize="14dp"></TextView>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
