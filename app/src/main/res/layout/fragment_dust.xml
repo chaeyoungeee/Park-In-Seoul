@@ -30,7 +30,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/white_button"
+                android:background="@drawable/light_gray_button"
                 android:fontFamily="@font/prtendardm"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="10dp"
@@ -64,7 +64,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/white_button"
+                    android:background="@drawable/light_gray_button"
                     android:fontFamily="@font/prtendardm"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="10dp"
@@ -112,7 +112,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/white_button"
+                    android:background="@drawable/light_gray_button"
                     android:fontFamily="@font/prtendardm"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="10dp"

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="17dp"
-    android:paddingHorizontal="18dp">
+>
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/white_button"
+            android:background="@drawable/light_gray_button"
             android:fontFamily="@font/prtendardm"
             android:paddingHorizontal="20dp"
             android:paddingVertical="10dp"
@@ -37,7 +37,7 @@
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/white_button"
+            android:background="@drawable/light_gray_button"
             android:fontFamily="@font/prtendardm"
             android:paddingHorizontal="20dp"
             android:paddingVertical="10dp"
