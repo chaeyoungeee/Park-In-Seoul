@@ -1,8 +1,11 @@
 package com.example.mpproject
 
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import com.google.android.material.tabs.TabLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -34,6 +37,16 @@ class DetailActivity : AppCompatActivity() {
 
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if(Build.VERSION.SDK_INT >= 19) {
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            if(Build.VERSION.SDK_INT < 21) {
+                setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true)
+            } else {
+                setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
+                window.statusBarColor = Color.TRANSPARENT
+            }
+        }
 
 
         val name = intent.getStringExtra("name")
@@ -207,5 +220,11 @@ class DetailActivity : AppCompatActivity() {
         binding.backBtn.setOnClickListener {
             finish()
         }
+    }
+
+    private fun setWindowFlag(bits: Int, on: Boolean) {
+        val winAttr = window.attributes
+        winAttr.flags = if(on) winAttr.flags or bits else winAttr.flags and bits.inv()
+        window.attributes = winAttr
     }
 }

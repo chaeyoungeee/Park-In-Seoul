@@ -16,7 +16,7 @@ import com.example.mpproject.models.EventItem
 class EventFragment : Fragment() {
     private var _binding: FragmentEventBinding? = null
     private val binding get() = _binding!!
-    var eventList: List<EventItem>? = null
+    private var eventList: List<EventItem>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

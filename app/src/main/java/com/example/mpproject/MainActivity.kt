@@ -1,10 +1,13 @@
 package com.example.mpproject
 
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
@@ -33,10 +36,21 @@ class MainActivity : AppCompatActivity() {
     private var isBookmarkSelected = false
     private var bookmarkList: List<ParkItem> = listOf()
     private var searchList: List<ParkItem> = listOf()
+    private var searchWord: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        if(Build.VERSION.SDK_INT >= 19) {
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            if(Build.VERSION.SDK_INT < 21) {
+                setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true)
+            } else {
+                setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
+                window.statusBarColor = Color.TRANSPARENT
+            }
+        }
 
         val retrofit = Retrofit.Builder()
             .baseUrl("http://openapi.seoul.go.kr:8088/")
@@ -179,6 +193,7 @@ class MainActivity : AppCompatActivity() {
                 binding.recyclerView.adapter = ParkAdapter(parkList)
                 isBookmarkSelected = false
                 bookmarkItem.setIcon(R.drawable.unselected_bookmark)
+                searchWord = null
                 return true
             }
         })
@@ -189,35 +204,34 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 // text submit
                 Log.d("Search", "검색: $query")
-                if(isBookmarkSelected) {
-                    searchList = bookmarkList.filter { parkItem ->
+                searchWord = query
+                searchList = if (isBookmarkSelected) {
+                    bookmarkList.filter { parkItem ->
                         parkItem.name?.contains(query.orEmpty(), ignoreCase = true) == true
                     }
-                    binding.recyclerView.adapter = ParkAdapter(searchList)
                 } else {
-                    searchList =  parkList.filter { parkItem ->
+                    parkList.filter { parkItem ->
                         parkItem.name?.contains(query.orEmpty(), ignoreCase = true) == true
                     }
-                    binding.recyclerView.adapter = ParkAdapter(searchList)
                 }
+                binding.recyclerView.adapter = ParkAdapter(searchList)
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 // text change
-                if(isBookmarkSelected) {
-                    val searchList = bookmarkList.filter { parkItem ->
+                searchWord = newText
+                searchList = if(isBookmarkSelected) {
+                    bookmarkList.filter { parkItem ->
                         parkItem.name?.contains(newText.orEmpty(), ignoreCase = true) == true
                     }
-                    binding.recyclerView.adapter = ParkAdapter(searchList)
-                }
-                else {
-                    val searchList =  parkList.filter { parkItem ->
-                        parkItem.name?.contains(newText.orEmpty(), ignoreCase = true) == true
-                    }
-                    binding.recyclerView.adapter = ParkAdapter(searchList)
-                }
 
+                } else {
+                    parkList.filter { parkItem ->
+                        parkItem.name?.contains(newText.orEmpty(), ignoreCase = true) == true
+                    }
+                }
+                binding.recyclerView.adapter = ParkAdapter(searchList)
 
                 return true
             }
@@ -234,10 +248,29 @@ class MainActivity : AppCompatActivity() {
                 if (isBookmarkSelected) {
                     item.setIcon(R.drawable.selected_bookmark)
                     bookmarkList = parkList.filter { it.isBookmarked }
-                    binding.recyclerView.adapter = ParkAdapter(bookmarkList)
+
+                    if (searchWord != null) {
+                        searchWord?.let { Log.d("seachWord", it) }
+                        searchList = bookmarkList.filter { parkItem ->
+                            parkItem.name?.contains(searchWord.orEmpty(), ignoreCase = true) == true
+                        }
+                        binding.recyclerView.adapter = ParkAdapter(searchList)
+                    } else {
+
+                        binding.recyclerView.adapter = ParkAdapter(bookmarkList)
+                    }
+
                 } else {
+                    searchWord?.let { Log.d("seachWord2", it) }
                     item.setIcon(R.drawable.unselected_bookmark)
-                    binding.recyclerView.adapter = ParkAdapter(parkList)
+                    if (searchWord != null) {
+                        searchList = parkList.filter { parkItem ->
+                            parkItem.name?.contains(searchWord.orEmpty(), ignoreCase = true) == true
+                        }
+                        binding.recyclerView.adapter = ParkAdapter(searchList)
+                    } else {
+                        binding.recyclerView.adapter = ParkAdapter(parkList)
+                    }
                 }
 
 
@@ -245,6 +278,12 @@ class MainActivity : AppCompatActivity() {
             }
             else -> return true
         }
+    }
+
+    private fun setWindowFlag(bits: Int, on: Boolean) {
+        val winAttr = window.attributes
+        winAttr.flags = if(on) winAttr.flags or bits else winAttr.flags and bits.inv()
+        window.attributes = winAttr
     }
 
 

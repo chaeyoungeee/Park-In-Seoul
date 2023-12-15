@@ -28,4 +28,5 @@
     <style name="ToolbarTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">22dp</item> <!-- 텍스트 크기 조절 -->
     </style>
+
 </resources>

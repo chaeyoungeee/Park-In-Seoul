@@ -15,10 +15,16 @@ class WeatherAdapter(val weatherList: List<WeatherItem>) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: WeatherAdapter.Holder, position: Int) {
         holder.DT.text = weatherList[position].DT.substring(8, 10) + "시"
         holder.temp.text = weatherList[position].temp + "℃"
-        if (weatherList[position].preciptation == "-") {
-            holder.preciptation.text = weatherList[position].preciptation
-        } else {
-            holder.preciptation.text = weatherList[position].preciptation + "mm"
+        when (weatherList[position].preciptation) {
+            "-" -> {
+                holder.preciptation.text = weatherList[position].preciptation
+            }
+            "빗방울" -> {
+                holder.preciptation.text = weatherList[position].preciptation
+            }
+            else -> {
+                holder.preciptation.text = weatherList[position].preciptation + "mm"
+            }
         }
 //        holder.preceptType.text = weatherList[position].preceptType
         holder.rainChance.text = weatherList[position].rainChance + "%"
